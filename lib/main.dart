@@ -32,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // 시간 (가로) , 온도 (세로)
+  // TODO: programController.myTemp , programController.myTime 으로
   double myTime = 0;
   double myTemp = 10.0;
 
@@ -80,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(20.0),
@@ -103,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: SliderTheme(
                                     data: SliderThemeData(
                                         thumbShape: const SliderThumbShape(),
-                                        trackHeight: 15,
+                                        trackHeight: 20,
                                         activeTrackColor: myTemp <= 30
                                             ? const Color.fromARGB(
                                                 94, 68, 137, 255)
@@ -121,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         onChanged: (vlaue) {
                                           setState(() {
                                             myTemp = vlaue;
-                                            print(myTemp);
+                                            // print(myTemp);
                                           });
                                         }),
                                   ),
@@ -129,44 +131,36 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Stack(children: [
                                   SizedBox(
                                     width: 200,
-                                    child: Column(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            // height: 80,
-                                            width: 150,
-                                            decoration: const BoxDecoration(
-                                                gradient: LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Color.fromARGB(
-                                                    197, 244, 67, 54),
-                                                Color.fromARGB(
-                                                    125, 255, 255, 255),
-                                                Color.fromARGB(
-                                                    190, 33, 149, 243),
-                                              ],
-                                            )),
-                                            child: CustomPaint(
-                                              size: const Size(
-                                                  200, 250), // 그래픽의 크기 조정
-                                              painter:
-                                                  ChartPainter(myTime, myTemp),
-                                            ),
-                                          ),
+                                    child: Expanded(
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                            Color.fromARGB(197, 244, 67, 54),
+                                            Color.fromARGB(125, 255, 255, 255),
+                                            Color.fromARGB(190, 33, 149, 243),
+                                          ],
+                                        )),
+                                        child: CustomPaint(
+                                          size: const Size(
+                                              200, 250), // 그래픽의 크기 조정
+                                          painter: ChartPainter(myTime, myTemp),
                                         ),
-                                      ],
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
                                     width: 200,
                                     child: SliderTheme(
-                                      data: const SliderThemeData(
+                                      data: SliderThemeData(
                                           trackHeight: 1,
-                                          thumbShape: SliderThumbShape(),
-                                          thumbColor:
-                                              Color.fromARGB(255, 0, 0, 0),
+                                          thumbShape: const SliderThumbShape(),
+                                          overlayShape:
+                                              SliderComponentShape.noOverlay,
+                                          thumbColor: const Color.fromARGB(
+                                              255, 0, 0, 0),
                                           overlayColor: Colors.transparent),
                                       child: Slider(
                                           //시간 슬라이더
@@ -181,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           }),
                                     ),
                                   ),
-                                ])
+                                ]),
                               ],
                             ),
                           ),
