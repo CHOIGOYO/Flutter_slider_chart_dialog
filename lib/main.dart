@@ -7,7 +7,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // 시간 (가로) , 온도 (세로)
-  // TODO: programController.myTemp , programController.myTime 으로
+ 
   double myTime = 0;
   double myTemp = 10.0;
 
@@ -195,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         tooltip: 'Increment',
         child: const Icon(Icons.bar_chart_sharp),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), 
     );
   }
 }
@@ -255,8 +255,6 @@ class ChartPainter extends CustomPainter {
     // 시간 선 (가로선)
     final timeStartX = size.width * myTime / 10; // 왼쪽에서 오른쪽으로 길어지도록 계산
 
-    // final verticalLineLength =
-    //     (size.height - timeY) * (myTemp / 40); // 온도에 비례한 세로선의 길이 계산
 
     canvas.drawLine(
       Offset(0, timeY), // 왼쪽에서 시작하도록 수정
